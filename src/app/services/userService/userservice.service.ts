@@ -45,11 +45,12 @@ export class UserserviceService {
     console.log(reqdata);
     let header = {
       headers: new HttpHeaders({
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization':'Bearer ' +token
 
       })
     }
-    return this.httpservice.putServices('User/ResetPassword', reqdata, false, header)
+    return this.httpservice.putServices(`User/ResetPassword/${reqdata.newPassword}/${reqdata.confirmPassword}`, reqdata, true, header)
   }
   
 }

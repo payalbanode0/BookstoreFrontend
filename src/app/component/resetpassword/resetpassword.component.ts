@@ -15,10 +15,10 @@ export class ResetpasswordComponent implements OnInit {
   token: any
 
 
-  constructor(private forrmBuilder: FormBuilder, private user: UserserviceService) { }
+  constructor(private forrmBuilder: FormBuilder, private user: UserserviceService,private activateRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.token = this.activateRoute.snapshot.paramMap.get('token');
+    this.token = this.activateRoute.snapshot.paramMap.get('token');
 
     this.resetPasswordForm = this.forrmBuilder.group({
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
