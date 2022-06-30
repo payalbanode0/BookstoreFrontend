@@ -35,15 +35,17 @@ export class BookserviceService {
     console.log("data")
     return this.httpservice.postService('api/Feedback/AddFeedback', data,true,headerOption);
   }
-  getfeedback(data:any) {
-    this.token = localStorage.getItem("token")
-    console.log(data);
-    let headerOption = {
+  getfeedback(data: any) {
+    this.token = localStorage.getItem('token')
+
+    let header = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': ' application/json',
         'Authorization': 'Bearer ' + this.token
       })
     }
-    return this.httpservice.postService(`api/Feedback/Get${data.BookId}`,data, true,headerOption);
+console.log("reqdata")
+    return this.httpservice.getServices(`api/Feedback/Get/${data.bookId}`, true, header)
   }
+
 }

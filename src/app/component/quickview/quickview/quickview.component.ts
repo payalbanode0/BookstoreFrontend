@@ -8,7 +8,7 @@ import { BookserviceService } from 'src/app/services/bookservice/bookservice.ser
   styleUrls: ['./quickview.component.scss']
 })
 export class QuickviewComponent implements OnInit {
-
+  feedbackArray: any
   feedback: any
   BookId: any;
   bookArray: any;
@@ -29,7 +29,7 @@ export class QuickviewComponent implements OnInit {
       response.response.forEach((element: any) => {
         if (element.bookId == this.BookId) {
           this.bookArray = element;
-
+          this.getFeedback();
           console.log(this.bookArray);
         }
       });
@@ -49,12 +49,19 @@ export class QuickviewComponent implements OnInit {
     }, error => { console.log(error) })
   }
   getFeedback() {
-    console.log(this.bookArray)
-    this.bookService.getfeedback(this.bookArray.bookId).subscribe((response: any) => {
+    let data = {
+      bookId: this.BookId
+    }
+    console.log(data)
+    this.bookService.getfeedback(data).subscribe((response: any) => {
       console.log('User Feedback', response);
-      this.bookArray = response.response;
-      console.log(this.bookArray);
+      this.feedbackArray = response.response;
+      console.log(this.feedbackArray);
+      console.log(data)
     });
   }
+
+
+
 
 }
