@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ReactiveFormsModule,FormsModule, FormGroup } from '@angular/forms';
 import { MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 import { LoginComponent } from './component/login/login.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -19,6 +20,12 @@ import { RegistrationComponent } from './component/registration/registration.com
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import {MatCardModule} from '@angular/material/card';
 import { ResetpasswordComponent } from './component/resetpassword/resetpassword.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
+import { GetallbookComponent } from './component/getallbook/getallbook.component';
+import { QuickviewComponent } from './component/quickview/quickview/quickview.component';
+
 
 
 @NgModule({
@@ -27,20 +34,26 @@ import { ResetpasswordComponent } from './component/resetpassword/resetpassword.
     LoginComponent,
   RegistrationComponent,
   ForgotPasswordComponent,
-  ResetpasswordComponent
+  ResetpasswordComponent,
+  DashboardComponent,
+  GetallbookComponent,
+  QuickviewComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
+    AppRoutingModule,MatIconModule,
+    BrowserAnimationsModule,MatDialogModule,MatSelectModule,
+    MatFormFieldModule,MatButtonModule,
     MatInputModule,HttpClientModule,MatCardModule,
     MatTabsModule,
     FormsModule,
     FlexLayoutModule,
     MatRadioModule,
-    MatIconModule,
+    
     ReactiveFormsModule,
+    MatMenuModule,
+    MatDividerModule
     
   ],
   providers: [],

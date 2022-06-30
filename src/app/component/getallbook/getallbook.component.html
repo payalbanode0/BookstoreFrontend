@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout="row" fxLayout.xs="row">
+
+    <div class="bookaligncount">
+        <span class="books">Books</span>
+        <span class="count">({{ booklist?.length}} items)</span>
+    </div>
+    <mat-form-field appearance="outline">
+        <mat-label>{{sortBy}}</mat-label>
+            <mat-select>
+                <mat-option (click)="relevence()">Sort by relevence</mat-option>
+                <mat-option (click)="lowtohigh()">Price -- Low to High</mat-option>
+                <mat-option (click)="hightolow()">Price -- High to low</mat-option>
+                <mat-option (click)="newestarrivals()">newest First</mat-option>
+            </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="books_list" fxLayout="row" fxLayoutAlign="center center">
+    <div class="bookdata" *ngFor="let book of booklist " fxLayout.sm="column">
+        <div class="bookimg">
+            <img class="img1" [src]="book.bookImage" (click)="quickview(book)">
+        </div>
+        <div class="bookname">
+            {{book.bookName}}
+        </div>
+        <div class="author">
+            by {{book.authorName}}
+        </div>
+        <div class="rating" fxLayoutAlign="space-evenly center">
+            4.5<img class="Star" src="../../../assets/star.png" alt="">
+        </div>
+
+        <div class="quantity">
+            ({{book.bookCount}})
+        </div>
+
+        <div class="price" fxLayout="row">
+            <div class="discountprice">
+                Rs.{{book.discountPrice}}
+            </div>
+            <div class="ActualPrice">
+                <del> Rs.{{book.actualPrice}} </del>
+            </div>
+        </div>
+        <div class="cartandwishlistbutton" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-evenly center">
+
+            
+        </div>
+    </div>
+</div>
+<div class="pagination" fxLayoutAlign="center center">
+    <!-- <pagination-controls class="text-center my-pagination" (pageChange)="page = $event" ></pagination-controls> -->
+</div>
