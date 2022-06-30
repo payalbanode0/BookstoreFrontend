@@ -1,4 +1,4 @@
- <div style="width: 100%; padding-left: 100px;padding-right:210px;margin-bottom: 200px; " fxLayout="column">
+<div style="width: 100%; padding-left: 100px;padding-right:210px;margin-bottom: 200px; " fxLayout="column">
     <div fxLayout="column">
 
         <div>
@@ -8,11 +8,11 @@
         <div style="margin-top: 50px;" fxLayout="row ">
             <div fxLayout="row " fxLayoutAlign="center start">
                 <div class="bookimg2" fxLayout="row " fxLayoutAlign="center center">
-                    <img src="{{bookArray.bookImage}}"  class="img2"  alt="book img">
+                    <img   class="img2" src="{{bookArray?.bookImage}}"  alt="book img">
                 </div>
                 <div>
                     <div class="bookimg1" fxLayout="row " fxLayoutAlign="center center">
-                        <img src="{{bookArray.bookImage}}" class="img1" alt="book img">
+                        <img  class="img1" src="{{bookArray?.bookImage}}" alt="book img">
 
                     </div>
                     <div fxLayout="row " fxLayoutAlign="space-between" style="margin-top: 30px;">
@@ -28,17 +28,17 @@
                 <div fxLayout="column">
                     <div fxLayout="column">
                         <div>
-                            <h2 class="title">{{bookArray.bookName}}</h2>
+                            <h2 class="title">{{bookArray?.bookName}}</h2>
                         </div>
                         <div>
-                            <p id="para">by {{bookArray.authorName}}</p>
+                            <p id="para">by {{bookArray?.authorName}}</p>
                         </div>
 
                         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign=" center">
-                            <div class="rating" fxLayout="row" fxLayoutAlign="center center">{{bookArray.totalRating}}<img class="Star"
+                            <div class="rating" fxLayout="row" fxLayoutAlign="center center">{{bookArray?.totalRating}}<img class="Star"
                                     src="./../../../../assets/star.png" alt=""></div>
                             <div>
-                                <p id="count">{{bookArray.ratingCount}}</p>
+                                <p id="count">{{bookArray?.ratingCount}}</p>
                             </div>
 
                         </div>
@@ -46,10 +46,10 @@
                         <div class="price-container" fxLayout="row" fxLayoutGap="20px">
 
                             <div class="discount-price">
-                                Rs. {{bookArray.discountPrice}}
+                                Rs. {{bookArray?.discountPrice}}
                             </div>
                             <div class="actual-price">
-                                Rs.{{bookArray.originalPrice}}
+                                Rs.{{bookArray?.originalPrice}}
                             </div>
                         </div>
 
@@ -58,41 +58,53 @@
                     <div style="margin-top: 30px;">
                         <li style="font-size: 18px;font-weight: bold;">BookDetails</li>
                         <ul style="margin-left: -15px; word-spacing:5px">
-                         {{bookArray.bookDetails}}</ul>
+                         {{bookArray?.bookDetails}}</ul>
                     </div>
                     <hr style=" width: 100%; margin-top: 30px;">
-                    <div style="margin-top: 30px;">
+                    <div style="margin-top: 30px;margin-bottom: 50px;" >
                         <span style="font-size: 20px;">Customer Feedback</span>
                         <mat-card
-                            style="padding:20px;margin-top: 20px; background-color:rgb(242, 242, 255);height: 150px;border-radius: 5px;">
+                            style="padding:20px;margin-top: 20px; background-color:rgb(242, 242, 255);border-radius: 5px;">
                             <span>Overall rating</span>
                             <div>
                                 <div class="rate" >
 
-                                    <input type="radio" id="star5" name="rate"  value="5" />
+                                    <input type="radio" [(ngModel)]="rating" id="star5" name="rate"  value="5" />
                                     <label for="star5" title="Extremely Good">5 stars</label>
-                                    <input type="radio" id="star4" name="rate"  value="4" />
+                                    <input type="radio" [(ngModel)]="rating" id="star4" name="rate"  value="4" />
                                     <label for="star4" title="Very Good">4 stars</label>
-                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <input type="radio" [(ngModel)]="rating" id="star3" name="rate" value="3" />
                                     <label for="star3" title="Good">3 stars</label>
-                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <input type="radio" [(ngModel)]="rating" id="star2" name="rate" value="2" />
                                     <label for="star2" title="Not Bad">2 stars</label>
-                                    <input type="radio" id="star1" name="rate"  value="1" />
+                                    <input type="radio" [(ngModel)]="rating" id="star1" name="rate"  value="1" />
                                     <label for="star1" title="Bad">1 star</label>
                                 </div>
                             </div> 
                             <div style="margin-bottom: 20px;">
-                                <input style="width:100%;height:40px;border-radius: 5px;" placeholder="Enter your review">
+                                <input style="width:100%;height:40px;border-radius: 5px;" placeholder="Enter your review" [(ngModel)]="comment">
                             </div>
                            
                             <div fxLayoutAlign="end center">
                                 <button
-                                    style="width:80px;border-radius: 5px;height: 30px;background-color: rgb(105, 105, 201);">Submit</button>
+                                    style="width:80px;border-radius: 5px;height: 30px;background-color: rgb(105, 105, 201);"(click)="addFeedback()">Submit</button>
                             </div>
                         </mat-card>
                     </div>
+                    <div style="display: flex; flex-direction: column-reverse;margin-left: 60px;margin-top: 30px;">
+                        <div class="feedback-box"   fxLayoutGap ="20px"  *ngFor="let feedback of bookArray">
+                            <div class="user" >
+                                <span class="user-comment"> <b>comment:</b> {{feedback?.comment}}</span>
+                            </div>
+                            <div>
+                                <span class="user-rating"> <b>Rating:</b> {{feedback?.rating}} </span>
+                            </div>
+                            <div>
+                                <span class="user-bookId"><b>bookId:</b>  {{feedback?.bookId}}</span>
+                            </div>
+                        </div>  
 
                 </div>
             </div>
         </div>
-    </div> -->
+    </div> 
