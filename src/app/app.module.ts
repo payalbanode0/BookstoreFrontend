@@ -25,6 +25,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDividerModule} from '@angular/material/divider';
 import { GetallbookComponent } from './component/getallbook/getallbook.component';
 import { QuickviewComponent } from './component/quickview/quickview/quickview.component';
+import { CartComponent } from './component/cart/cart/cart.component';
 
 
 
@@ -38,6 +39,7 @@ import { QuickviewComponent } from './component/quickview/quickview/quickview.co
   DashboardComponent,
   GetallbookComponent,
   QuickviewComponent,
+  CartComponent,
 
   ],
   imports: [

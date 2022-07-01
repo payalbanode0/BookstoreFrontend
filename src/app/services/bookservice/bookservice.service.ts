@@ -23,7 +23,7 @@ export class BookserviceService {
     }
     return this.httpservice.getServices('Book/GetAllBook', true, headerOption);
   }
-  addfeedback(data:any) {
+  addfeedback(data: any) {
     this.token = localStorage.getItem('token')
     console.log();
     let headerOption = {
@@ -33,7 +33,7 @@ export class BookserviceService {
       })
     }
     console.log("data")
-    return this.httpservice.postService('api/Feedback/AddFeedback', data,true,headerOption);
+    return this.httpservice.postService('api/Feedback/AddFeedback', data, true, headerOption);
   }
   getfeedback(data: any) {
     this.token = localStorage.getItem('token')
@@ -44,8 +44,44 @@ export class BookserviceService {
         'Authorization': 'Bearer ' + this.token
       })
     }
-console.log("reqdata")
+    console.log("reqdata")
     return this.httpservice.getServices(`api/Feedback/Get/${data.bookId}`, true, header)
   }
+  addtobag(data: any) {
+    this.token = localStorage.getItem('token')
 
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json-patch+json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    console.log("reqdata")
+    return this.httpservice.postService(`Cart/AddBooksInCart`, data, true, header)
+  }
+  Getcart() {
+    this.token = localStorage.getItem('token')
+
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type': ' application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    }
+    console.log("reqdata")
+    return this.httpservice.getServices('Cart/GetAllBooksinCart', true, header)
+  }
+  removeCart(data: any) {
+    this.token = localStorage.getItem('token')
+
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type': ' application/json',
+        'Authorization': 'Bearer ' +this.token
+      })
+    }
+    console.log("reqdata")
+    return this.httpservice.deleteServices(`Cart/DeleteCart/${data.CartId}`, true, header)
+  
+  }
 }

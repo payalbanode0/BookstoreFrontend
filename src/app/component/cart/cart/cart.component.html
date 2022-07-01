@@ -1,0 +1,58 @@
+<div class="Container">
+    <div class="Block">
+        <div style="width: 100%; margin-top: 2%;">
+            <span style="color:gray; cursor: pointer;" routerLink="/dashboard/getallbook">Home/</span>
+            <span> Mycart </span>
+        </div>
+        <div style="width: 70%; margin-top: 20px;">
+            <mat-card>
+                <div>
+                    <div class="block1">
+
+                        <h2>MyCart({{booksArray?.length}})</h2>
+                        <mat-card style="margin-left: 50%; width:250px; height: 10px;">
+                            <span style="margin-bottom: 5px;">Bridgelabz solutions Private ltd</span>
+
+                        </mat-card>
+                    </div>
+
+                    <div style="margin-top: 5px; display: flex; direction: row; margin-bottom: 30px; border-bottom: 1px solid gray; padding-bottom: 25px;"
+                        *ngFor="let book of booksArray">
+                        <div>
+                            <img style="height: 70px; width: 60px" [src]="book.bookModel.bookImage" />
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <div style="display: flex; direction:row">
+                                <span style="font-size:medium;">{{book.bookModel.bookName}}</span>
+                            </div>
+                            <div>
+                                <span style="font-size: 10px; color:gray">{{book.bookModel.authorName}}</span>
+                            </div>
+                            <div class="discountprice">
+                                Rs.{{book.bookModel.discountPrice*book.booksQty}}
+                                <del style="margin-left: 30px; color:gray">
+                                    Rs.{{book.bookModel.originalPrice*book.booksQty}} </del>
+                            </div>
+                            <div>
+                                <div class="quantitiy" fxLayout="row">
+                                    <img class="circle" src="../../../../assets/remove_circle_outline_black_24dp.svg">
+                                    <div class="inputBox" fxLayoutAlign="center center">{{book.booksQty}}</div>
+                                    <img class="circle" src="../../../../assets/add_circle_outline_black_24dp.svg">
+                                    <button class="remove-btn" (click)="removeCart(book.cartId)">Remove</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="example-button-row">
+                        <button style="background-color: #3371B5; color:aliceblue; border: none; height: 30px"
+                            mat-raised-button color="primary">PLACE ORDER</button>
+                    </div>
+                </div>
+            </mat-card>
+            <mat-card style="margin-top: 20px;">Address Details</mat-card>
+            <mat-card style="margin-top: 20px;">Order Summary</mat-card>
+        </div>
+    </div>
+</div>

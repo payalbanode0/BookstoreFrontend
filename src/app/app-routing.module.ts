@@ -1,5 +1,6 @@
 import {  NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartComponent } from './component/cart/cart/cart.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { GetallbookComponent } from './component/getallbook/getallbook.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
     children: [
       { path:'getallbook', component: GetallbookComponent },
       {path:'quickview',component:QuickviewComponent},
+      {path:'cart',component:CartComponent}
     ]
   }
 ];

@@ -15,6 +15,8 @@ export class QuickviewComponent implements OnInit {
   comment: any;
   rating: any;
   orderQuantity = 1;
+  show=false;
+  bookmodel:any
 
   constructor(private bookService: BookserviceService, private router: Router) { }
 
@@ -60,7 +62,30 @@ export class QuickviewComponent implements OnInit {
       console.log(data)
     });
   }
+  value=1;
+  handleMinus() {
+    this.value--;  
+  }
+  handlePlus() {
+    this.value++;    
+  }
 
+  hideAndShow() {
+    console.log("calling hide");
+    this.show= !this.show;
+
+  }
+  AddToBag() {
+    let reqdata = { bookId: this.BookId, booksQty: this.value}
+    this.bookService.addtobag(reqdata).subscribe(
+      (response: any) => {
+       
+        console.log(response);
+
+
+      }
+    )
+  }
 
 
 
