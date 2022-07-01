@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BookserviceService } from 'src/app/services/bookservice/bookservice.service';
 
@@ -18,7 +19,7 @@ export class QuickviewComponent implements OnInit {
   show=false;
   bookmodel:any
 
-  constructor(private bookService: BookserviceService, private router: Router) { }
+  constructor(private bookService: BookserviceService, private router: Router,private snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.BookId = localStorage.getItem("bookId");
@@ -33,6 +34,7 @@ export class QuickviewComponent implements OnInit {
           this.bookArray = element;
           this.getFeedback();
           console.log(this.bookArray);
+          
         }
       });
     })
@@ -47,6 +49,9 @@ export class QuickviewComponent implements OnInit {
     this.bookService.addfeedback(data).subscribe((response: any) => {
       console.log("User Feedback", response);
       this.getFeedback();
+      this.snackbar.open(' Add Feedback  sucessfully', '', {
+        duration:2000,
+       }); 
 
     }, error => { console.log(error) })
   }
@@ -60,6 +65,11 @@ export class QuickviewComponent implements OnInit {
       this.feedbackArray = response.response;
       console.log(this.feedbackArray);
       console.log(data)
+      this.snackbar.open(' GetFeedback  sucessfully', '', {
+        duration:2000,
+       }); 
+
+      
     });
   }
   value=1;

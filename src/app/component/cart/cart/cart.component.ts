@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BookserviceService } from 'src/app/services/bookservice/bookservice.service';
 
@@ -9,26 +10,19 @@ import { BookserviceService } from 'src/app/services/bookservice/bookservice.ser
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  BookingForm!: FormGroup;
+ 
   submitted = false;
   booksArray: any;
   token: any;
   Book: any;
   bookQuantity:any;
   fullName:any;
-  MobileNumber:any;
-  typeId:any;
-
-  AddressList:any;
-  AddressId:any;
-  showAddress = true;
-  showButton = true;
-  showCart = true;
-  showContinueButton = false;
-  showOrdersummery = false;
-  constructor(private bookService: BookserviceService,private formBuilder: FormBuilder,private router: Router) { 
+  
+ 
+  
+  constructor(private bookService: BookserviceService,private formBuilder: FormBuilder,private router: Router,private snackbar:MatSnackBar) { 
     this.fullName= localStorage.getItem("fullName");
-    this.MobileNumber= localStorage.getItem("MobileNumber");
+    
   }
 
   ngOnInit(): void {
@@ -41,6 +35,9 @@ export class CartComponent implements OnInit {
       console.log(response);
       this.booksArray = response.response;
       console.log(this.booksArray);
+      this.snackbar.open(' GetCart  sucessfully', '', {
+        duration:2000,
+       }); 
 
     });
   } 
@@ -52,6 +49,9 @@ export class CartComponent implements OnInit {
     this.bookService.removeCart(data).subscribe((response: any) => {
       this.getCartbook()
       console.log('Remove successfully', response);
+      this.snackbar.open(' Remove Cart  sucessfully', '', {
+        duration:2000,
+       }); 
 
     })
   }

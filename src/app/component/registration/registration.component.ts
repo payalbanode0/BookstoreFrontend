@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserserviceService } from 'src/app/services/userService/userservice.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { UserserviceService } from 'src/app/services/userService/userservice.ser
    registerForm!: FormGroup
    submitted = false;
 
-   constructor(private formBuilder: FormBuilder,private user:UserserviceService) { }
+   constructor(private formBuilder: FormBuilder,private user:UserserviceService,private snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -37,6 +38,10 @@ import { UserserviceService } from 'src/app/services/userService/userservice.ser
       }
       this.user.register(data).subscribe((res:any)=>{
         console.log(res);
+        this.snackbar.open('Add Feedback  sucessfully', '', {
+          duration:2000,
+         }); 
+  
       })
     }
       else{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BookserviceService } from 'src/app/services/bookservice/bookservice.service';
 
@@ -14,7 +15,7 @@ export class GetallbookComponent implements OnInit {
   sortBy:any="Sort by relevence";
 
 
-  constructor(private book: BookserviceService, private router: Router) { }
+  constructor(private book: BookserviceService, private router: Router,private snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.getallbooks()
@@ -30,6 +31,9 @@ export class GetallbookComponent implements OnInit {
         console.log(error);
 
       }
+      this.snackbar.open('getallbook successfully', '', {
+        duration:2000,
+       }); 
   }
 
 

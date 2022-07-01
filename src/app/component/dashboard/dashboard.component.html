@@ -11,7 +11,7 @@
       <input class="searchInput" type="text" name="search" placeholder="Search.." />
 
     </mat-card>
-    <button class="cart" mat-icon-button matTooltip="Cart">Cart<mat-icon>shopping_cart</mat-icon></button>
+    <button class="cart" (click)="getcart()" mat-icon-button matTooltip="Cart">Cart<mat-icon>shopping_cart</mat-icon></button>
     <button class="Menu" class="pro" mat-button [matMenuTriggerFor]="menu">Profile
       <mat-icon class="searchIcon">perm_identity</mat-icon>
     </button>
